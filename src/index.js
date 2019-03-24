@@ -1,14 +1,16 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { Route, Link, BrowserRouter as Router } from "react-router-dom";
+import { Route, BrowserRouter as Router } from "react-router-dom";
 import "./index.css";
 import App from "./App";
+import Game from "./components/game";
 import * as serviceWorker from "./serviceWorker";
 
 const routing = (
   <Router>
     <div>
       <Route path="/" exact component={App} />
+      <Route path="/games/:id" component={Game} />
     </div>
   </Router>
 );

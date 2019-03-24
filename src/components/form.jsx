@@ -24,8 +24,10 @@ class Form extends Component {
     })
       .then(res => res.json())
       .catch(error => console.error("Error:", error))
-      .then(response => console.log("Success:", response));
-    this.props.history.push("/url");
+      .then(game => {
+        console.log("Success:", game);
+        this.props.history.push(`/games/${game.id}`);
+      });
   };
 
   handleChange = e => {
