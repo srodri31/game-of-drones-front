@@ -6,8 +6,7 @@ class Game extends Component {
     super(props);
     this.state = {
       game: null,
-      player1: null,
-      player2: null
+      players: null
     };
   }
 
@@ -19,16 +18,19 @@ class Game extends Component {
       .catch(error => console.error("Error:", error))
       .then(game => {
         console.log("Success:", game);
+        const players = game.players.map(player => {
+          return { ...player, move: null };
+        });
         this.setState({
           game: game.id,
-          player1: game.players[0],
-          player2: game.players[1],
+          players,
           round: 1
         });
       });
   }
 
   render() {
+    const { players } = this.state;
     return (
       <div>
         <h1>Game with ID {this.props.match.params.id} has begun!!!</h1>
@@ -37,20 +39,15 @@ class Game extends Component {
           {this.state.game ? `Game: ${this.state.game}` : "Loading game.."}
         </div>
         <div>
-          <div>
-            {this.state.player1 ? (
-              <Player player={this.state.player1} />
-            ) : (
-              "Loading first player info.."
-            )}
-          </div>
-          <div>
-            {this.state.player2 ? (
-              <Player player={this.state.player2} />
-            ) : (
-              "Loading second player info.."
-            )}
-          </div>
+          {players
+            ? players.map(player => {
+                return (
+                  <div key={player.id}>
+                    <Player player={player} />
+                  </div>
+                );
+              })
+            : "Loading players info"}
         </div>
       </div>
     );
