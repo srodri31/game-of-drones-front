@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
 
 class Form extends Component {
   constructor(props) {
@@ -12,7 +13,7 @@ class Form extends Component {
   handleSubmit = e => {
     e.preventDefault();
     const { player1, player2 } = this.state;
-    const data = { players: [player1, player2]};
+    const data = { players: [player1, player2] };
     fetch("http://localhost:8000/api/v1/games", {
       method: "POST", // or 'PUT'
       body: JSON.stringify(data), // data can be `string` or {object}!
@@ -24,6 +25,7 @@ class Form extends Component {
       .then(res => res.json())
       .catch(error => console.error("Error:", error))
       .then(response => console.log("Success:", response));
+    this.props.history.push("/url");
   };
 
   handleChange = e => {
@@ -68,4 +70,4 @@ class Form extends Component {
   }
 }
 
-export default Form;
+export default withRouter(Form);
