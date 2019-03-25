@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
+import URL_API from "../general/constants";
 
 class Form extends Component {
   constructor(props) {
@@ -24,7 +25,7 @@ class Form extends Component {
       });
     } else {
       const data = { players: [player1, player2] };
-      fetch("http://localhost:8000/api/v1/games", {
+      fetch(`${URL_API}/api/v1/games`, {
         method: "POST", // or 'PUT'
         body: JSON.stringify(data), // data can be `string` or {object}!
         headers: {
