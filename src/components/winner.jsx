@@ -31,9 +31,19 @@ class Winner extends Component {
   render() {
     const { winner } = this.state;
     return (
-      <div>
-        The winner is: {winner ? winner.name : "*DRUMS*"}{" "}
-        <Link to="/">Play again!</Link>
+      <div className="flex-container height-100">
+        <div className="flex-item text-center">
+          <h1 className="title color-purple text-center">We have a WINNER!!</h1>
+          <div className="">
+            The new EMPEROR is{" "}
+            {winner ? `${winner.name}, bend the knee` : "*DRUMS*"}
+          </div>
+          <div className="p-20">
+            <Link to="/" className="btn btn-purple color-white">
+              Play again!
+            </Link>
+          </div>
+        </div>
       </div>
     );
   }
