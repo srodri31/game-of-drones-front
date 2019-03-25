@@ -24,9 +24,13 @@
   transition: padding ease-in-out 0.2s, color ease-in-out 0.2s;
 }
 
+.input.error {
+  border-color: red;
+}
+
 .input:focus {
   padding-bottom: 10px;
-  border-bottom-color: #6f1bd6;
+  border-color: #6f1bd6;
 }
 
 /* GENERAL */

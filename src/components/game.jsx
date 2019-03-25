@@ -55,7 +55,7 @@ class Game extends Component {
   };
 
   saveRound = (players, movesInRound, round) => {
-    const data = {
+    let data = {
       players: players
     };
     fetch("http://localhost:8000/api/v1/rounds/games/" + this.state.game, {
@@ -67,6 +67,8 @@ class Game extends Component {
       mode: "cors"
     })
       .then(res => {
+        players[0].move = null;
+        players[1].move = null;
         this.setState({
           players,
           movesInRound,
@@ -121,7 +123,7 @@ class Game extends Component {
     const { players } = this.state;
     return (
       <div className="p-20">
-        <h1 className="text-center">The Game with has begun!!!</h1>
+        <h1 className="text-center">The Game has begun!!!</h1>
         <h2 className="text-center">Round {this.state.round}</h2>
         <div className="grid-container grid-3">
           <Rounds rounds={this.state.rounds} />

@@ -6,28 +6,39 @@ class Form extends Component {
     super(props);
     this.state = {
       player1: "",
-      player2: ""
+      player2: "",
+      errorP1: null,
+      errorP2: null
     };
   }
 
   handleSubmit = e => {
     e.preventDefault();
     const { player1, player2 } = this.state;
-    const data = { players: [player1, player2] };
-    fetch("http://localhost:8000/api/v1/games", {
-      method: "POST", // or 'PUT'
-      body: JSON.stringify(data), // data can be `string` or {object}!
-      headers: {
-        "Content-Type": "application/json"
-      },
-      mode: "cors"
-    })
-      .then(res => res.json())
-      .catch(error => console.error("Error:", error))
-      .then(game => {
-        console.log("Success:", game);
-        this.props.history.push(`/games/${game.id}`);
+    let errorP1 = this.validatePlayer(player1);
+    let errorP2 = this.validatePlayer(player2);
+    if (errorP1 || errorP2) {
+      this.setState({
+        errorP1,
+        errorP2
       });
+    } else {
+      const data = { players: [player1, player2] };
+      fetch("http://localhost:8000/api/v1/games", {
+        method: "POST", // or 'PUT'
+        body: JSON.stringify(data), // data can be `string` or {object}!
+        headers: {
+          "Content-Type": "application/json"
+        },
+        mode: "cors"
+      })
+        .then(res => res.json())
+        .catch(error => console.error("Error:", error))
+        .then(game => {
+          console.log("Success:", game);
+          this.props.history.push(`/games/${game.id}`);
+        });
+    }
   };
 
   handleChange = e => {
@@ -37,8 +48,19 @@ class Form extends Component {
     });
   };
 
+  validatePlayer = player => {
+    if (!player) return "Player name is required";
+    return null;
+  };
+
+  classForInput = error => {
+    let className = "input ";
+    if (error) className += "error";
+    return className;
+  };
+
   render() {
-    const { player1, player2 } = this.state;
+    const { player1, player2, errorP1, errorP2 } = this.state;
 
     return (
       <form onSubmit={this.handleSubmit}>
@@ -51,7 +73,7 @@ class Form extends Component {
             value={player1}
             id="player1"
             name="player1"
-            className="input"
+            className={this.classForInput(errorP1)}
             onChange={this.handleChange}
           />
         </div>
@@ -64,7 +86,7 @@ class Form extends Component {
             value={player2}
             id="player2"
             name="player2"
-            className="input"
+            className={this.classForInput(errorP2)}
             onChange={this.handleChange}
           />
         </div>

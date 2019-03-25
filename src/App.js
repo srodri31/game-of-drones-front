@@ -6,7 +6,7 @@ class App extends Component {
   render() {
     return (
       <div className="flex-container height-100">
-        <div>
+        <div className="flex-item">
           <div className="title color-purple p-20 text-center">
             Game Of Drones
           </div>

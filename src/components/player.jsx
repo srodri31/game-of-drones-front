@@ -2,13 +2,10 @@ import React, { Component } from "react";
 import gameMoves from "../general/gameMoves";
 
 class Player extends Component {
-  render() {
+  renderPlayerMove = () => {
     const { player } = this.props;
-    return (
-      <div>
-        <div>
-          <h2>Player: {player.name}</h2>
-        </div>
+    if (!player.move) {
+      return (
         <div>
           <form onSubmit={e => this.props.onMove(e, player)}>
             <label>
@@ -30,10 +27,26 @@ class Player extends Component {
             />
           </form>
         </div>
+      );
+    } else {
+      return (
         <div>
-          <b>Actual move: </b>
-          {player.move ? player.move.label : "No moves"}
+          <b>Selected Move: </b>
+          {player.move.label}
         </div>
+      );
+    }
+  };
+
+  render() {
+    const { player } = this.props;
+
+    return (
+      <div>
+        <div>
+          <h2>Player: {player.name}</h2>
+        </div>
+        {this.renderPlayerMove()}
       </div>
     );
   }
