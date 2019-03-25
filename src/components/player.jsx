@@ -1,17 +1,32 @@
 import React, { Component } from "react";
+import gameMoves from "../general/gameMoves";
 
 class Player extends Component {
-  constructor(props) {
-    super(props);
-  }
   render() {
     const { player } = this.props;
     return (
-      <div className="row">
-        <div className="col-12 p-4 text-center">
+      <div>
+        <div>
           <h2>Player: {player.name}</h2>
         </div>
-        <div className="col-md-6">
+        <div>
+          <form onSubmit={e => this.props.onMove(e, player)}>
+            <label>
+              Select move
+              <select>
+                {gameMoves.map(move => {
+                  return (
+                    <option key={move.value} value={JSON.stringify(move)}>
+                      {move.label}
+                    </option>
+                  );
+                })}
+              </select>
+            </label>
+            <input type="submit" value="Play!" />
+          </form>
+        </div>
+        <div>
           <b>Actual move: </b>
           {player.move ? player.move.label : "No moves"}
         </div>
