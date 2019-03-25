@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Player from "./player";
 import Rounds from "./rounds";
 import { withRouter } from "react-router-dom";
+import URL_API from "../general/constants";
 
 class Game extends Component {
   constructor(props) {
@@ -21,7 +22,7 @@ class Game extends Component {
 
   fecthGame = () => {
     const { id } = this.props.match.params;
-    fetch(`http://localhost:8000/api/v1/games/${id}`, {
+    fetch(`${URL_API}/api/v1/games/${id}`, {
       method: "Get"
     })
       .then(res => res.json())
@@ -40,7 +41,7 @@ class Game extends Component {
 
   fecthRounds = () => {
     const { id } = this.props.match.params;
-    fetch(`http://localhost:8000/api/v1/rounds/games/${id}`, {
+    fetch(`${URL_API}/api/v1/rounds/games/${id}`, {
       method: "Get"
     })
       .then(res => res.json())
@@ -58,7 +59,7 @@ class Game extends Component {
     let data = {
       players: players
     };
-    fetch("http://localhost:8000/api/v1/rounds/games/" + this.state.game, {
+    fetch(`${URL_API}/api/v1/rounds/games/${this.state.game}`, {
       method: "POST",
       body: JSON.stringify(data),
       headers: {
@@ -84,7 +85,7 @@ class Game extends Component {
 
   declareWinner = () => {
     const { id } = this.props.match.params;
-    fetch(`http://localhost:8000/api/v1/games/${id}/winner/`, {
+    fetch(`${URL_API}/api/v1/games/${id}/winner/`, {
       method: "POST"
     })
       .then(res => res.json())

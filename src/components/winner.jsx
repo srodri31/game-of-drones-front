@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import URL_API from "../general/constants";
 
 class Winner extends Component {
   constructor(props) {
@@ -15,7 +16,7 @@ class Winner extends Component {
 
   fetchGameWinner = () => {
     const { id } = this.props.match.params;
-    fetch(`http://localhost:8000/api/v1/games/${id}/winner`, {
+    fetch(`${URL_API}/api/v1/games/${id}/winner`, {
       method: "Get"
     })
       .then(res => {
