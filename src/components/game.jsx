@@ -49,7 +49,7 @@ class Game extends Component {
         console.log("Success:", rounds);
         this.setState({
           rounds,
-          round: rounds.length + 1
+          round: rounds.length ? rounds.length + 1 : 1
         });
       });
   };
@@ -73,6 +73,9 @@ class Game extends Component {
           round
         });
         this.fecthRounds();
+        if (round >= 3) {
+          this.declareWinner();
+        }
       })
       .catch(error => console.error("Error:", error));
   };
@@ -82,10 +85,14 @@ class Game extends Component {
     fetch(`http://localhost:8000/api/v1/games/${id}/winner/`, {
       method: "POST"
     })
-      .then(res => {
-        this.props.history.push(`/games/${id}/winner`);
-      })
-      .catch(error => console.error("Error:", error));
+      .then(res => res.json())
+      .catch(error => console.error("Error:", error))
+      .then(winner => {
+        console.log(winner);
+        if (winner.winnerId) {
+          this.props.history.push(`/games/${id}/winner`);
+        }
+      });
   };
 
   handleMove = (e, player) => {
@@ -97,9 +104,7 @@ class Game extends Component {
     players[playerIndex].move = JSON.parse(move);
     let movesInRound = this.state.movesInRound + 1;
     let round = this.state.round;
-    if (round > 3) {
-      this.declareWinner();
-    } else if (movesInRound === players.length) {
+    if (movesInRound === players.length) {
       movesInRound = 0;
       round = this.state.round + 1;
       this.saveRound(players, movesInRound, round);

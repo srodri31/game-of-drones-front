@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 class Winner extends Component {
   constructor(props) {
@@ -29,7 +30,12 @@ class Winner extends Component {
 
   render() {
     const { winner } = this.state;
-    return <div>The winner is: {winner ? winner.name : "*DRUMS*"}</div>;
+    return (
+      <div>
+        The winner is: {winner ? winner.name : "*DRUMS*"}{" "}
+        <Link to="/">Play again!</Link>
+      </div>
+    );
   }
 }
 
