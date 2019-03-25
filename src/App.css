@@ -1,33 +1,100 @@
-.App {
+/* GRID */
+
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* FORM */
+
+.input {
+  border: none;
+  border-bottom: 2px solid #a623ce;
+  transition: padding ease-in-out 0.2s, color ease-in-out 0.2s;
+}
+
+.input:focus {
+  padding-bottom: 10px;
+  border-bottom-color: #6f1bd6;
+}
+
+/* GENERAL */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  color: #595959;
+}
+
+.height-100 {
+  min-height: 100vh;
+}
+
+.width-50 {
+  width: 50%;
+}
+.width-100 {
+  width: 100%;
+}
+
+.title {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+/* text align */
+.text-left {
+  text-align: left;
+}
+.text-right {
+  text-align: right;
+}
+.text-center {
   text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
+/* padding */
+.p-0 {
+  padding: 0;
+}
+.p-5 {
+  padding: 5px;
+}
+.p-10 {
+  padding: 10px;
+}
+.p-15 {
+  padding: 15px;
+}
+.p-20 {
+  padding: 20px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.btn {
+  border-radius: 15px;
+  border: 0;
+  padding: 7px 20px;
+  cursor: pointer;
 }
 
-.App-link {
-  color: #61dafb;
+.btn-purple {
+  background-color: #a623ce;
+  transition: background-color ease-in-out 0.2s;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.btn-purple:hover {
+  background-color: #6f1bd6;
+}
+
+.color-white {
+  color: #fff;
+}
+
+.color-purple {
+  color: #a623ce;
 }

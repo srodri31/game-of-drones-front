@@ -42,30 +42,38 @@ class Form extends Component {
 
     return (
       <form onSubmit={this.handleSubmit}>
-        <div>
-          <label>
+        <div className="p-5">
+          <label htmlFor="player1" className="p-5">
             Player 1
-            <input
-              type="text"
-              value={player1}
-              name="player1"
-              onChange={this.handleChange}
-            />
           </label>
+          <input
+            type="text"
+            value={player1}
+            id="player1"
+            name="player1"
+            className="input"
+            onChange={this.handleChange}
+          />
         </div>
-        <div>
-          <label>
+        <div className="p-5">
+          <label htmlFor="player2" className="p-5">
             Player 2
-            <input
-              type="text"
-              value={player2}
-              name="player2"
-              onChange={this.handleChange}
-            />
           </label>
+          <input
+            type="text"
+            value={player2}
+            id="player2"
+            name="player2"
+            className="input"
+            onChange={this.handleChange}
+          />
         </div>
-        <div>
-          <input type="submit" value="Start" />
+        <div className="text-center p-15">
+          <input
+            type="submit"
+            value="Start"
+            className="btn btn-purple color-white"
+          />
         </div>
       </form>
     );
