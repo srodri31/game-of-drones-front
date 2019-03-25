@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Player from "./player";
 import Rounds from "./rounds";
+import { withRouter } from "react-router-dom";
 
 class Game extends Component {
   constructor(props) {
@@ -82,12 +83,9 @@ class Game extends Component {
       method: "POST"
     })
       .then(res => {
-        res.json();
+        this.props.history.push(`/games/${id}/winner`);
       })
-      .catch(error => console.error("Error:", error))
-      .then(res => {
-        alert(`Winner is: ${res}`);
-      });
+      .catch(error => console.error("Error:", error));
   };
 
   handleMove = (e, player) => {
@@ -140,4 +138,4 @@ class Game extends Component {
   }
 }
 
-export default Game;
+export default withRouter(Game);

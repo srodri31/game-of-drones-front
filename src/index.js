@@ -4,13 +4,15 @@ import { Route, BrowserRouter as Router } from "react-router-dom";
 import "./index.css";
 import App from "./App";
 import Game from "./components/game";
+import Winner from "./components/winner";
 import * as serviceWorker from "./serviceWorker";
 
 const routing = (
   <Router>
     <div>
       <Route path="/" exact component={App} />
-      <Route path="/games/:id" component={Game} />
+      <Route path="/games/:id" exact component={Game} />
+      <Route path="/games/:id/winner" component={Winner} />
     </div>
   </Router>
 );
