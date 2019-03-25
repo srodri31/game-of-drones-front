@@ -13,7 +13,7 @@ class Player extends Component {
           <form onSubmit={e => this.props.onMove(e, player)}>
             <label>
               Select move
-              <select>
+              <select className="">
                 {gameMoves.map(move => {
                   return (
                     <option key={move.value} value={JSON.stringify(move)}>
@@ -23,7 +23,11 @@ class Player extends Component {
                 })}
               </select>
             </label>
-            <input type="submit" value="Play!" />
+            <input
+              type="submit"
+              className="btn btn-purple color-white"
+              value="Play!"
+            />
           </form>
         </div>
         <div>

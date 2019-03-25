@@ -5,7 +5,7 @@ import "./App.css";
 class App extends Component {
   render() {
     return (
-      <div className="container height-100">
+      <div className="flex-container height-100">
         <div>
           <div className="title color-purple p-20 text-center">
             Game Of Drones

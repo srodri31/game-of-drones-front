@@ -120,18 +120,15 @@ class Game extends Component {
   render() {
     const { players } = this.state;
     return (
-      <div>
-        <h1>Game with ID {this.props.match.params.id} has begun!!!</h1>
-        <h2>Round {this.state.round}</h2>
-        <Rounds rounds={this.state.rounds} />
-        <div>
-          {this.state.game ? `Game: ${this.state.game}` : "Loading game..."}
-        </div>
-        <div>
+      <div className="p-20">
+        <h1 className="text-center">The Game with has begun!!!</h1>
+        <h2 className="text-center">Round {this.state.round}</h2>
+        <div className="grid-container grid-3">
+          <Rounds rounds={this.state.rounds} />
           {players
             ? players.map(player => {
                 return (
-                  <div key={player.id}>
+                  <div key={player.id} className="text-center">
                     <Player player={player} onMove={this.handleMove} />
                   </div>
                 );
