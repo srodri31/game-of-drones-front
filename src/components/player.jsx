@@ -8,21 +8,21 @@ class Player extends Component {
       return (
         <div>
           <form onSubmit={e => this.props.onMove(e, player)}>
-            <label>
+            <label htmlFor="playerMove" className="m-5">
               Select move
-              <select className="">
-                {gameMoves.map(move => {
-                  return (
-                    <option key={move.value} value={JSON.stringify(move)}>
-                      {move.label}
-                    </option>
-                  );
-                })}
-              </select>
             </label>
+            <select className="" id="playerMove" className="m-5">
+              {gameMoves.map(move => {
+                return (
+                  <option key={move.value} value={JSON.stringify(move)}>
+                    {move.label}
+                  </option>
+                );
+              })}
+            </select>
             <input
               type="submit"
-              className="btn btn-purple color-white"
+              className="btn btn-purple color-white m-5"
               value="Play!"
             />
           </form>

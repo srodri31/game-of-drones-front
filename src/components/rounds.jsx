@@ -9,7 +9,11 @@ class Rounds extends Component {
           <h2>Rounds</h2>
           <ol>
             {rounds.map(round => {
-              return <li key={round.id}>Winner: {round.player.name}</li>;
+              return (
+                <li key={round.id}>
+                  <b className="color-purple">Winner:</b> {round.player.name}
+                </li>
+              );
             })}
           </ol>
         </div>

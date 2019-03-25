@@ -90,6 +90,23 @@ body {
   padding: 20px;
 }
 
+/* margin */
+.m-0 {
+  margin: 0;
+}
+.m-5 {
+  margin: 5px;
+}
+.m-10 {
+  margin: 10px;
+}
+.m-15 {
+  margin: 15px;
+}
+.m-20 {
+  margin: 20px;
+}
+
 .btn {
   border-radius: 15px;
   border: 0;
@@ -113,4 +130,15 @@ body {
 
 .color-purple {
   color: #a623ce;
+}
+
+@media (max-width: 500px) {
+  .input {
+    width: 100%;
+    padding-top: 10px;
+  }
+
+  .grid-3 {
+    grid-template-columns: auto;
+  }
 }
